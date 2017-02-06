@@ -1,0 +1,23 @@
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ListPreference
+        android:defaultValue="6"
+        android:key="player_number"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/pref_number_of_player" />
+
+    <android.support.v7.preference.SwitchPreferenceCompat
+        android:defaultValue="true"
+        android:key="use_random"
+        android:title="@string/pref_use_random" />
+
+    <MultiSelectListPreference
+        android:key="player_roles"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:defaultValue="@array/empty_array"
+        android:title="@string/pref_role_list" />
+
+</PreferenceScreen>
