@@ -3,6 +3,7 @@ package com.pokhyl.lifeboat;
 
 import android.os.Bundle;
 import android.support.v14.preference.MultiSelectListPreference;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.SwitchPreferenceCompat;
@@ -24,7 +25,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     private String[] playerNumberList = new String[]{"4", "5", "6"};
     private ListPreference numberPreferences;
     private MultiSelectListPreference rolePreferences;
-    private SwitchPreferenceCompat switch_preference;
+    private SwitchPreferenceCompat random_role_preference;
+    private int playerNumber;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,7 +39,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         setPreferencesFromResource(R.xml.pref_general, rootKey);
 
         numberPreferences = (ListPreference) findPreference("player_number");
-        switch_preference = (SwitchPreferenceCompat) findPreference("use_random_role");
+        random_role_preference = (SwitchPreferenceCompat) findPreference("use_random_role");
         rolePreferences = (MultiSelectListPreference) findPreference("player_roles");
 
         initPlayersNumberPref();
@@ -55,10 +57,19 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_apply_config :
-                //TODO make check
+                if (isConfigValid()) {
+                    showGenerateNewGameDialog();
+                } else {
+                    Toast.makeText(getActivity(), R.string.settings_wrong_setup_msg, Toast.LENGTH_LONG).show();
+                }
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private boolean isConfigValid() {
+        return random_role_preference.isChecked()
+                || Integer.parseInt(numberPreferences.getValue()) == rolePreferences.getValues().size();
     }
 
     private void initPlayersNumberPref() {
@@ -72,12 +83,12 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     }
 
     private void initUseRandomPref() {
-        switch_preference.setOnPreferenceChangeListener((preference1, newValue) -> {
+        random_role_preference.setOnPreferenceChangeListener((preference1, newValue) -> {
             Boolean useRandom = (Boolean) newValue;
             rolePreferences.setEnabled(!useRandom);
             return true;
         });
-        rolePreferences.setEnabled(!switch_preference.isChecked());
+        rolePreferences.setEnabled(!random_role_preference.isChecked());
     }
 
     private void initPlayersRolePref() {
@@ -100,5 +111,17 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             rolePreferences.setSummary(rolesSummary1);
             return true;
         });
+    }
+
+    private void showGenerateNewGameDialog() {
+        new AlertDialog.Builder(getActivity())
+                .setMessage(R.string.settings_new_game_dialog)
+                .setPositiveButton(android.R.string.yes, (dialog, which) -> {
+                    Toast.makeText(getActivity(), "new game", Toast.LENGTH_LONG).show();
+                    //generate new game
+                })
+                .setNegativeButton(android.R.string.cancel, (dialog, which) -> {})
+                .create()
+                .show();
     }
 }

@@ -7,6 +7,7 @@
     <string name="switch_random_roles">Use random roles</string>
     <string name="title_activity_settings">Settings</string>
 
+    <!-- Person names -->
     <string name="person_kid">Kid</string>
     <string name="person_lady_lauren">Lady Lauren</string>
     <string name="person_sir_stephen">Sir Stephen</string>
@@ -19,4 +20,6 @@
     <string name="pref_use_random">Use random roles</string>
     <string name="pref_role_list">Pick role manually</string>
     <string name="incorrect_person_selected">Please select %d person</string>
+    <string name="settings_new_game_dialog">Generate new game?</string>
+    <string name="settings_wrong_setup_msg">Settings isn\'t correct</string>
 </resources>
