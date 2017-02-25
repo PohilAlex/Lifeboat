@@ -1,7 +1,10 @@
 package com.pokhyl.lifeboat;
 
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v14.preference.MultiSelectListPreference;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.preference.ListPreference;
@@ -14,19 +17,21 @@ import android.widget.Toast;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
+import com.google.auto.value.AutoValue;
 import com.pokhyl.lifeboat.model.Person;
 
+import java.util.List;
 import java.util.Set;
 
 
 public class SettingsFragment extends PreferenceFragmentCompat {
 
+    public static final String EXTRA_GAME_SETTING = "EXTRA_GAME_SETTING";
 
     private String[] playerNumberList = new String[]{"4", "5", "6"};
     private ListPreference numberPreferences;
     private MultiSelectListPreference rolePreferences;
     private SwitchPreferenceCompat random_role_preference;
-    private int playerNumber;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -92,13 +97,17 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     }
 
     private void initPlayersRolePref() {
-        String[] rolesList = Stream.of(Person.values())
+        String[] rolesTitles = Stream.of(Person.values())
                 .map(person -> getString(PersonResourceManager.getTitle(person)))
                 .toArray(String[]::new);
 
+        String[] rolesValues = Stream.of(Person.values())
+                .map(Enum::toString)
+                .toArray(String[]::new);
+
         String rolesSummary = Stream.of(rolePreferences.getValues()).collect(Collectors.joining(",  "));
-        rolePreferences.setEntries(rolesList);
-        rolePreferences.setEntryValues(rolesList);
+        rolePreferences.setEntries(rolesTitles);
+        rolePreferences.setEntryValues(rolesValues);
         rolePreferences.setSummary(rolesSummary);
         rolePreferences.setOnPreferenceChangeListener((preference, newValue) -> {
             Set<String> value = (Set<String>) newValue;
@@ -117,11 +126,43 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         new AlertDialog.Builder(getActivity())
                 .setMessage(R.string.settings_new_game_dialog)
                 .setPositiveButton(android.R.string.yes, (dialog, which) -> {
-                    Toast.makeText(getActivity(), "new game", Toast.LENGTH_LONG).show();
-                    //generate new game
+                    Intent data = new Intent();
+                    data.putExtra(EXTRA_GAME_SETTING, createGameSettings());
+                    getActivity().setResult(Activity.RESULT_OK, data);
+                    getActivity().finish();
                 })
                 .setNegativeButton(android.R.string.cancel, (dialog, which) -> {})
                 .create()
                 .show();
+    }
+
+    private GameSettings createGameSettings() {
+        return GameSettings.builder()
+                .playerNumber(Integer.parseInt(numberPreferences.getValue()))
+                .useRandom(random_role_preference.isChecked())
+                .personList(Stream.of(rolePreferences.getValues())
+                        .map(Person::valueOf)
+                        .collect(Collectors.toList()))
+                .build();
+    }
+
+    @AutoValue
+    public abstract static class GameSettings implements Parcelable {
+
+        public abstract int playerNumber();
+        public abstract boolean useRandom();
+        public abstract List<Person> personList();
+
+        public static Builder builder() {
+            return new AutoValue_SettingsFragment_GameSettings.Builder();
+        }
+
+        @AutoValue.Builder
+        public interface Builder {
+            Builder playerNumber(int playerNumber);
+            Builder useRandom(boolean useRandom);
+            Builder personList(List<Person> personList);
+            GameSettings build();
+        }
     }
 }
