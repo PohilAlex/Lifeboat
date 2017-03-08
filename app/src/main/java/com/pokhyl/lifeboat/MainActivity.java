@@ -17,12 +17,10 @@ import com.pokhyl.lifeboat.model.PersonRelation;
 import com.pokhyl.lifeboat.utils.RecyclerItemClickListener;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                     .useRandom(true)
                     .build());
         } else {
-            personAdapter.setData(getPersonForDisplay(relationMap));
+            personAdapter.setData(relationMap);
         }
 
     }
@@ -87,12 +85,12 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.person_grid);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        personAdapter = new PersonAdapter(new ArrayList<>());
+        personAdapter = new PersonAdapter();
         recyclerView.setAdapter(personAdapter);
         recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                PersonRelation relation = relationMap.get(getPersonForDisplay(relationMap).get(position));
+                PersonRelation relation = relationMap.get(personAdapter.getItem(position));
                 startActivity(RelationActivity.createIntent(MainActivity.this, relation));
             }
 
@@ -103,27 +101,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void generateNewGame(@NonNull GameSettings settings) {
-        List<Person> newPersonList;
+        List<Person> newPersonList = new ArrayList<>();
         if (settings.useRandom()) {
             Random random = new Random();
-            Set<Person> persons = new HashSet<>();
-            while (persons.size() < settings.playerNumber()) {
-                persons.add(Person.values()[random.nextInt(settings.playerNumber())]);
+            ArrayList<Person> persons = new ArrayList<>(Arrays.asList(Person.values()));
+            for (int i = 0; i < settings.playerNumber(); i++) {
+                newPersonList.add(persons.remove(random.nextInt(persons.size())));
             }
-            newPersonList = new ArrayList<>(persons);
         } else {
             newPersonList = settings.personList();
         }
 
         relationMap = RelationGenerator.generate(newPersonList);
         relationStorage.storeRelation(relationMap);
-        personAdapter.setData(getPersonForDisplay(relationMap));
+        personAdapter.setData(relationMap);
     }
 
-    private List<Person> getPersonForDisplay(Map<Person, PersonRelation> relationMap) {
-        List<Person> persons = new ArrayList<>(relationMap.keySet());
-        Collections.sort(persons, (o1, o2) -> o1.strength - o2.strength);
-        return persons;
-    }
+
 
 }

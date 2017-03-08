@@ -7,21 +7,34 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.pokhyl.lifeboat.model.Person;
+import com.pokhyl.lifeboat.model.PersonRelation;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonViewHolder> {
 
-    final List<Person> personList;
 
-    public PersonAdapter(List<Person> personList) {
-        this.personList = personList;
+    private final List<Person> personList;
+
+    public PersonAdapter() {
+        personList = new ArrayList<>();
     }
 
-    public void setData(List<Person> personList) {
+    public PersonAdapter(Map<Person, PersonRelation> relationMap) {
+        this.personList = getPersonForDisplay(relationMap);
+    }
+
+    public void setData(Map<Person, PersonRelation> relationMap) {
         this.personList.clear();
-        this.personList.addAll(personList);
+        this.personList.addAll(getPersonForDisplay(relationMap));
         notifyDataSetChanged();
+    }
+
+    public Person getItem(int position) {
+        return personList.get(position);
     }
 
     @Override
@@ -39,6 +52,12 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonView
     @Override
     public int getItemCount() {
         return personList.size();
+    }
+
+    private List<Person> getPersonForDisplay(Map<Person, PersonRelation> relationMap) {
+        List<Person> persons = new ArrayList<>(relationMap.keySet());
+        Collections.sort(persons, (o1, o2) -> o1.strength - o2.strength);
+        return persons;
     }
 
     static class PersonViewHolder extends RecyclerView.ViewHolder {
