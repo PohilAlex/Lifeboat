@@ -20,6 +20,7 @@ import com.annimon.stream.Stream;
 import com.google.auto.value.AutoValue;
 import com.pokhyl.lifeboat.model.Person;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -105,10 +106,9 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 .map(Enum::toString)
                 .toArray(String[]::new);
 
-        String rolesSummary = Stream.of(rolePreferences.getValues()).collect(Collectors.joining(",  "));
         rolePreferences.setEntries(rolesTitles);
         rolePreferences.setEntryValues(rolesValues);
-        rolePreferences.setSummary(rolesSummary);
+        rolePreferences.setSummary(getRolePreferenceSummary(rolePreferences.getValues()));
         rolePreferences.setOnPreferenceChangeListener((preference, newValue) -> {
             Set<String> value = (Set<String>) newValue;
             int playerAmount = Integer.parseInt(numberPreferences.getValue());
@@ -116,10 +116,18 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 Toast.makeText(getActivity(), getString(R.string.incorrect_person_selected, playerAmount), Toast.LENGTH_LONG).show();
                 return false;
             }
-            String rolesSummary1 = Stream.of(value).collect(Collectors.joining(",  "));
-            rolePreferences.setSummary(rolesSummary1);
+            rolePreferences.setSummary(getRolePreferenceSummary(value));
             return true;
         });
+    }
+
+    private String getRolePreferenceSummary(Set<String> values) {
+        return Stream.of(values)
+                .map(s -> {
+                    int position = Arrays.asList(rolePreferences.getEntryValues()).indexOf(s);
+                    return rolePreferences.getEntries()[position];
+                })
+                .collect(Collectors.joining(",  "));
     }
 
     private void showGenerateNewGameDialog() {
