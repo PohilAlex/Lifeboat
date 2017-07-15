@@ -84,7 +84,8 @@ public class MainActivity extends AppCompatActivity {
     private void initViews() {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.person_grid);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
+        recyclerView.setLayoutManager(layoutManager);
         personAdapter = new PersonAdapter();
         recyclerView.setAdapter(personAdapter);
         recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, recyclerView, new RecyclerItemClickListener.OnItemClickListener() {

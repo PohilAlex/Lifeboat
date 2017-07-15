@@ -16,7 +16,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Best Friend"
+            android:text="@string/best_friend"
+            android:textSize="18sp"
+            android:textColor="@color/black"
             android:layout_gravity="center"/>
         <ImageView
             android:id="@+id/img_friend"
@@ -37,7 +39,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Enemy"
+            android:text="@string/enemy"
+            android:textSize="18sp"
+            android:textColor="@color/black"
             android:layout_gravity="center"/>
         <ImageView
             android:id="@+id/img_enemy"

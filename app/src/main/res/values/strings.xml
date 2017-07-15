@@ -22,4 +22,6 @@
     <string name="incorrect_person_selected">Please select %d person</string>
     <string name="settings_new_game_dialog">Generate new game?</string>
     <string name="settings_wrong_setup_msg">Settings isn\'t correct</string>
+    <string name="best_friend">Best Friend</string>
+    <string name="enemy">Enemy</string>
 </resources>
