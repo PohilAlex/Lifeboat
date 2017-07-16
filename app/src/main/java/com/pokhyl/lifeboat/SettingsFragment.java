@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.annotation.Nullable;
 import android.support.v14.preference.MultiSelectListPreference;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.preference.ListPreference;
@@ -159,7 +160,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
         public abstract int playerNumber();
         public abstract boolean useRandom();
-        public abstract List<Person> personList();
+        public abstract @Nullable List<Person> personList();
 
         public static Builder builder() {
             return new AutoValue_SettingsFragment_GameSettings.Builder();
