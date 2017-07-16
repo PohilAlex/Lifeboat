@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,9 +12,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.pokhyl.lifeboat.SettingsFragment.GameSettings;
+import com.pokhyl.lifeboat.model.GameSettings;
 import com.pokhyl.lifeboat.model.Person;
 import com.pokhyl.lifeboat.model.PersonRelation;
+import com.pokhyl.lifeboat.storage.SettingsStorage;
 import com.pokhyl.lifeboat.utils.RecyclerItemClickListener;
 
 import java.util.ArrayList;
@@ -39,14 +41,10 @@ public class MainActivity extends AppCompatActivity {
         relationStorage = new RelationStorage(this);
         relationMap = relationStorage.getRelations();
         if (relationMap == null) {
-            generateNewGame(GameSettings.builder()
-                    .playerNumber(6)
-                    .useRandom(true)
-                    .build());
+            generateNewGame(GameSettings.builder().build());
         } else {
             personAdapter.setData(relationMap);
         }
-
     }
 
     @Override
@@ -59,8 +57,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_item_refresh:
-                /*relationMap = RelationGenerator.generate(personList);
-                relationStorage.storeRelation(relationMap);*/
+                showRefreshGameDialog();
                 return true;
             case R.id.menu_item_settings:
                 startActivityForResult(new Intent(this, SettingsActivity.class), SETTINGS_REQUEST_CODE);
@@ -118,6 +115,20 @@ public class MainActivity extends AppCompatActivity {
         personAdapter.setData(relationMap);
     }
 
+    private void showRefreshGameDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.refresh_dialog_title)
+                .setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                    SettingsStorage settingsStorage = new SettingsStorage(MainActivity.this);
+                    GameSettings settings = settingsStorage.getGameSettings();
+                    generateNewGame(settings);
+                })
+                .setNegativeButton(android.R.string.cancel, (dialog, which) -> {
+                    dialog.dismiss();
+                })
+                .create()
+                .show();
+    }
 
 
 }

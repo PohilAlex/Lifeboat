@@ -4,11 +4,11 @@ package com.pokhyl.lifeboat;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.v14.preference.MultiSelectListPreference;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.preference.ListPreference;
+import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.SwitchPreferenceCompat;
 import android.view.Menu;
@@ -18,11 +18,10 @@ import android.widget.Toast;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
-import com.google.auto.value.AutoValue;
 import com.pokhyl.lifeboat.model.Person;
+import com.pokhyl.lifeboat.storage.SettingsStorage;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Set;
 
 
@@ -45,9 +44,9 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.pref_general, rootKey);
 
-        numberPreferences = (ListPreference) findPreference("player_number");
-        random_role_preference = (SwitchPreferenceCompat) findPreference("use_random_role");
-        rolePreferences = (MultiSelectListPreference) findPreference("player_roles");
+        numberPreferences = (ListPreference) findPreferenceByResources(R.string.pref_id_player_number);
+        random_role_preference = (SwitchPreferenceCompat) findPreferenceByResources(R.string.pref_id_use_random_role);
+        rolePreferences = (MultiSelectListPreference) findPreferenceByResources(R.string.pref_id_player_roles);
 
         initPlayersNumberPref();
         initUseRandomPref();
@@ -132,11 +131,12 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     }
 
     private void showGenerateNewGameDialog() {
+        SettingsStorage settingsStorage = new SettingsStorage(getActivity());
         new AlertDialog.Builder(getActivity())
                 .setMessage(R.string.settings_new_game_dialog)
                 .setPositiveButton(android.R.string.yes, (dialog, which) -> {
                     Intent data = new Intent();
-                    data.putExtra(EXTRA_GAME_SETTING, createGameSettings());
+                    data.putExtra(EXTRA_GAME_SETTING, settingsStorage.getGameSettings());
                     getActivity().setResult(Activity.RESULT_OK, data);
                     getActivity().finish();
                 })
@@ -145,33 +145,9 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 .show();
     }
 
-    private GameSettings createGameSettings() {
-        return GameSettings.builder()
-                .playerNumber(Integer.parseInt(numberPreferences.getValue()))
-                .useRandom(random_role_preference.isChecked())
-                .personList(Stream.of(rolePreferences.getValues())
-                        .map(Person::valueOf)
-                        .collect(Collectors.toList()))
-                .build();
+
+    private Preference findPreferenceByResources(@StringRes int stringId) {
+        return findPreference(getActivity().getString(stringId));
     }
 
-    @AutoValue
-    public abstract static class GameSettings implements Parcelable {
-
-        public abstract int playerNumber();
-        public abstract boolean useRandom();
-        public abstract @Nullable List<Person> personList();
-
-        public static Builder builder() {
-            return new AutoValue_SettingsFragment_GameSettings.Builder();
-        }
-
-        @AutoValue.Builder
-        public interface Builder {
-            Builder playerNumber(int playerNumber);
-            Builder useRandom(boolean useRandom);
-            Builder personList(List<Person> personList);
-            GameSettings build();
-        }
-    }
 }

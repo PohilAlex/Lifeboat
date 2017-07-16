@@ -3,18 +3,18 @@
 
     <ListPreference
         android:defaultValue="6"
-        android:key="player_number"
+        android:key="@string/pref_id_player_number"
         android:negativeButtonText="@null"
         android:positiveButtonText="@null"
         android:title="@string/pref_number_of_player" />
 
     <android.support.v7.preference.SwitchPreferenceCompat
-        android:key="use_random_role"
+        android:key="@string/pref_id_use_random_role"
         android:defaultValue="true"
         android:title="@string/pref_use_random" />
 
     <MultiSelectListPreference
-        android:key="player_roles"
+        android:key="@string/pref_id_player_roles"
         android:title="@string/pref_role_list" />
 
 </android.support.v7.preference.PreferenceScreen>

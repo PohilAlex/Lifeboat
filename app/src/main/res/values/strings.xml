@@ -2,8 +2,6 @@
     <string name="app_name">Lifeboat</string>
     <string name="refresh_item">Refresh relation</string>
     <string name="settings_item">Settings</string>
-    <string name="player_number">Number of players</string>
-    <string name="switch_random_roles">Use random roles</string>
     <string name="title_activity_settings">Settings</string>
 
     <!-- Person names -->
@@ -14,13 +12,23 @@
     <string name="person_captain">Captain</string>
     <string name="person_first_mat">First Mat</string>
 
+    <!-- Preference keys -->
+    <string name="pref_id_player_number" translatable="false">player_number</string>
+    <string name="pref_id_use_random_role" translatable="false">use_random_role</string>
+    <string name="pref_id_player_roles" translatable="false">player_roles</string>
+
+    <string name="refresh_dialog_title">Generate new game with current settings?</string>
+    <string name="best_friend">Best Friend</string>
+    <string name="enemy">Enemy</string>
+
     <!-- Strings related to Settings -->
     <string name="pref_number_of_player">Number of players</string>
-    <string name="pref_use_random">Use random roles</string>
+    <string name="pref_use_random">Random roles</string>
     <string name="pref_role_list">Pick role manually</string>
     <string name="incorrect_person_selected">Please select %d person</string>
     <string name="settings_new_game_dialog">Generate new game?</string>
     <string name="settings_wrong_setup_msg">Settings isn\'t correct</string>
-    <string name="best_friend">Best Friend</string>
-    <string name="enemy">Enemy</string>
+
+    <string name="player_number">Number of players</string>
+    <string name="switch_random_roles">Use random roles</string>
 </resources>

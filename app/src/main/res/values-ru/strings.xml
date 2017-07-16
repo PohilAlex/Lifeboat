@@ -2,8 +2,6 @@
     <string name="app_name">За ботром</string>
     <string name="refresh_item">Обновить</string>
     <string name="settings_item">Настройки</string>
-    <string name="player_number">Количество игроков</string>
-    <string name="switch_random_roles">Случайные роли</string>
     <string name="title_activity_settings">Настройки</string>
 
     <!-- Person names -->
@@ -14,6 +12,10 @@
     <string name="person_captain">Капитан</string>
     <string name="person_first_mat">Боцман</string>
 
+    <string name="best_friend">Лучший друг</string>
+    <string name="enemy">Злейший враг</string>
+    <string name="refresh_dialog_title">Создать новую игру с текущими настройками?</string>
+
     <!-- Strings related to Settings -->
     <string name="pref_number_of_player">Количество игроков</string>
     <string name="pref_use_random">Случайные роли</string>
@@ -23,6 +25,6 @@
     <string name="settings_wrong_setup_msg">Игра неправильно сконфигурирована</string>
 
 
-    <string name="best_friend">Лучший друг</string>
-    <string name="enemy">Злейший враг</string>
+    <string name="player_number">Количество игроков</string>
+    <string name="switch_random_roles">Случайные роли</string>
 </resources>
