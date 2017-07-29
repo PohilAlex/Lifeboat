@@ -1,4 +1,4 @@
-package com.pokhyl.lifeboat;
+package com.pokhyl.lifeboat.ui;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,9 +12,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.pokhyl.lifeboat.R;
+import com.pokhyl.lifeboat.RelationGenerator;
 import com.pokhyl.lifeboat.model.GameSettings;
 import com.pokhyl.lifeboat.model.Person;
 import com.pokhyl.lifeboat.model.PersonRelation;
+import com.pokhyl.lifeboat.storage.RelationStorage;
 import com.pokhyl.lifeboat.storage.SettingsStorage;
 import com.pokhyl.lifeboat.utils.RecyclerItemClickListener;
 

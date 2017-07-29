@@ -1,4 +1,4 @@
-package com.pokhyl.lifeboat;
+package com.pokhyl.lifeboat.ui;
 
 
 import android.app.Activity;
@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
+import com.pokhyl.lifeboat.PersonResourceManager;
+import com.pokhyl.lifeboat.R;
 import com.pokhyl.lifeboat.model.Person;
 import com.pokhyl.lifeboat.storage.SettingsStorage;
 

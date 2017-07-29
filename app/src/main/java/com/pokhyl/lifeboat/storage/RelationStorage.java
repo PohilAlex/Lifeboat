@@ -1,4 +1,4 @@
-package com.pokhyl.lifeboat;
+package com.pokhyl.lifeboat.storage;
 
 
 import android.content.Context;

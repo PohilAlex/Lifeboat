@@ -1,4 +1,4 @@
-package com.pokhyl.lifeboat;
+package com.pokhyl.lifeboat.ui;
 
 import android.app.Activity;
 import android.content.Context;
@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 
+import com.pokhyl.lifeboat.PersonResourceManager;
+import com.pokhyl.lifeboat.R;
 import com.pokhyl.lifeboat.model.PersonRelation;
 
 public class RelationActivity extends Activity {

@@ -1,4 +1,4 @@
-package com.pokhyl.lifeboat;
+package com.pokhyl.lifeboat.ui;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.pokhyl.lifeboat.PersonResourceManager;
+import com.pokhyl.lifeboat.R;
 import com.pokhyl.lifeboat.model.Person;
 import com.pokhyl.lifeboat.model.PersonRelation;
 
