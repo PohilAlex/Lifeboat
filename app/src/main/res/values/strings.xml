@@ -31,4 +31,5 @@
 
     <string name="player_number">Number of players</string>
     <string name="switch_random_roles">Use random roles</string>
+    <string name="menu_new_game">NEW GAME</string>
 </resources>

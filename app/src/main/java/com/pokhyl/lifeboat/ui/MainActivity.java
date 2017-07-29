@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,7 +17,6 @@ import com.pokhyl.lifeboat.model.GameSettings;
 import com.pokhyl.lifeboat.model.Person;
 import com.pokhyl.lifeboat.model.PersonRelation;
 import com.pokhyl.lifeboat.storage.RelationStorage;
-import com.pokhyl.lifeboat.storage.SettingsStorage;
 import com.pokhyl.lifeboat.utils.RecyclerItemClickListener;
 
 import java.util.ArrayList;
@@ -59,10 +57,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.menu_item_refresh:
-                showRefreshGameDialog();
-                return true;
-            case R.id.menu_item_settings:
+            case R.id.menu_new_game:
                 startActivityForResult(new Intent(this, SettingsActivity.class), SETTINGS_REQUEST_CODE);
                 return true;
         }
@@ -117,21 +112,5 @@ public class MainActivity extends AppCompatActivity {
         relationStorage.storeRelation(relationMap);
         personAdapter.setData(relationMap);
     }
-
-    private void showRefreshGameDialog() {
-        new AlertDialog.Builder(this)
-                .setTitle(R.string.refresh_dialog_title)
-                .setPositiveButton(android.R.string.ok, (dialog, which) -> {
-                    SettingsStorage settingsStorage = new SettingsStorage(MainActivity.this);
-                    GameSettings settings = settingsStorage.getGameSettings();
-                    generateNewGame(settings);
-                })
-                .setNegativeButton(android.R.string.cancel, (dialog, which) -> {
-                    dialog.dismiss();
-                })
-                .create()
-                .show();
-    }
-
 
 }

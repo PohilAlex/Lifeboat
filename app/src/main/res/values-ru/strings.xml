@@ -27,4 +27,5 @@
 
     <string name="player_number">Количество игроков</string>
     <string name="switch_random_roles">Случайные роли</string>
+    <string name="menu_new_game">НОВАЯ ИГРА</string>
 </resources>
