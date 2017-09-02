@@ -32,4 +32,11 @@
     <string name="player_number">Number of players</string>
     <string name="switch_random_roles">Use random roles</string>
     <string name="menu_new_game">NEW GAME</string>
+
+    <!-- User tips-->
+    <string name="welcome_msg">Welcome on board</string>
+    <string name="role_tip_title">Kid, come to the wheel</string>
+    <string name="role_tip_text">To find out your friend and enemy, click on the Kid tile</string>
+    <string name="settings_tip_title">Well done</string>
+    <string name="settings_tip_text">Click to generate a new game</string>
 </resources>

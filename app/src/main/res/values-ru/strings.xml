@@ -28,4 +28,11 @@
     <string name="player_number">Количество игроков</string>
     <string name="switch_random_roles">Случайные роли</string>
     <string name="menu_new_game">НОВАЯ ИГРА</string>
+
+    <!-- User tips-->
+    <string name="welcome_msg">Добро пожаловать на борт</string>
+    <string name="role_tip_title">Ребенок к рулю</string>
+    <string name="role_tip_text">Чтобы узнать своего друга и врага кликни на тайл Ребенка</string>
+    <string name="settings_tip_title">Отлично сделано</string>
+    <string name="settings_tip_text">Нажмите чтобы сгенерировать новую игру</string>
 </resources>

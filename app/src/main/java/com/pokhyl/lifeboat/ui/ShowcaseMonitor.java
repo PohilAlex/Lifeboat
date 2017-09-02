@@ -27,7 +27,7 @@ public class ShowcaseMonitor {
 
     public void showIntoTips() {
         new ShowcaseView.Builder(activity)
-                .setContentTitle("Добро пожаловать на борт")
+                .setContentTitle(R.string.welcome_msg)
                 .setStyle(R.style.CustomShowcaseTheme)
                 .blockAllTouches()
                 .setShowcaseEventListener(new SimpleShowcaseEventListener() {
@@ -45,8 +45,8 @@ public class ShowcaseMonitor {
         View targetView = recyclerView.getLayoutManager().getChildAt(0);
         roleShowcase = new ShowcaseView.Builder(activity)
                 .setTarget(new ViewTarget(targetView))
-                .setContentTitle("Шкет к рулю")
-                .setContentText("Чтобы узнать своего друга и врага кликини на тайл Шкета")
+                .setContentTitle(R.string.role_tip_title)
+                .setContentText(R.string.role_tip_text)
                 .setStyle(R.style.CustomShowcaseTheme)
                 .setShowcaseEventListener(new SimpleShowcaseEventListener() {
                     @Override
@@ -62,8 +62,8 @@ public class ShowcaseMonitor {
         DisplayMetrics metrics = activity.getResources().getDisplayMetrics();
         settingsShowcase = new ShowcaseView.Builder(activity)
                 .setTarget(new PointTarget((int) (metrics.widthPixels *0.9), (int) (metrics.heightPixels * 0.1)))
-                .setContentTitle("Отлично сделано")
-                .setContentText("Нажмите чтобы сгенерировать новую игру")
+                .setContentTitle(R.string.settings_tip_title)
+                .setContentText(R.string.settings_tip_text)
                 .setStyle(R.style.CustomShowcaseTheme)
                 .setShowcaseEventListener(new SimpleShowcaseEventListener() {
                     @Override
