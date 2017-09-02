@@ -9,6 +9,9 @@
         <item name="preferenceTheme">@style/Theme.WtfPreference</item>
     </style>
 
+    <style name="MainTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
+    </style>
+
     <style name="SettingsTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
     </style>
@@ -24,6 +27,20 @@
         <item name="dialogPreferenceStyle">@style/Preference.DialogPreference</item>
         <item name="editTextPreferenceStyle">@style/Preference.DialogPreference.EditTextPreference</item>
         <item name="preferenceFragmentListStyle">@style/PreferenceFragmentList</item>
+    </style>
+
+    <style name="CustomShowcaseTheme">
+        <item name="sv_backgroundColor">#88444444</item>
+        <item name="sv_titleTextAppearance">@style/CustomTitle2</item>
+        <item name="sv_detailTextAppearance">@style/CustomText2</item>
+    </style>
+
+    <style name="CustomTitle2" parent="TextAppearance.ShowcaseView.Title.Light">
+        <item name="android:textColor">#ffffff</item>
+    </style>
+
+    <style name="CustomText2" parent="TextAppearance.ShowcaseView.Detail.Light">
+        <item name="android:textColor">#ffffff</item>
     </style>
 
 </resources>

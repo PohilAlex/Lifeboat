@@ -10,11 +10,14 @@ import com.annimon.stream.Stream;
 import com.pokhyl.lifeboat.R;
 import com.pokhyl.lifeboat.model.GameSettings;
 import com.pokhyl.lifeboat.model.Person;
+import com.pokhyl.lifeboat.ui.ShowcaseMonitor.AppTourProgress;
 
 import static com.pokhyl.lifeboat.model.GameSettings.DEF_PLAYER_NUMBER;
 import static com.pokhyl.lifeboat.model.GameSettings.DEF_USE_RANDOM;
 
 public class SettingsStorage {
+
+    private final String APP_TOUR_PROGRESS = "APP_TOUR_PROGRESS";
 
     private final SharedPreferences preferences;
     private final Context context;
@@ -37,4 +40,20 @@ public class SettingsStorage {
                         .collect(Collectors.toList()))
                 .build();
     }
+
+    public void setAppTourProgress(AppTourProgress appTourProgress) {
+        preferences.edit()
+                .putString(APP_TOUR_PROGRESS, appTourProgress.name())
+                .apply();
+    }
+
+    public AppTourProgress getAppTourProgress() {
+        String progressTitle =  preferences.getString(APP_TOUR_PROGRESS, null);
+        if (progressTitle != null) {
+            return AppTourProgress.valueOf(progressTitle);
+        } else {
+            return AppTourProgress.NOT_SHOW_YET;
+        }
+    }
+
 }

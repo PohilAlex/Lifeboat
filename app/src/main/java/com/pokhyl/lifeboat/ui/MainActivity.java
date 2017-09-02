@@ -7,9 +7,11 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewTreeObserver;
 
 import com.pokhyl.lifeboat.R;
 import com.pokhyl.lifeboat.RelationGenerator;
@@ -17,6 +19,7 @@ import com.pokhyl.lifeboat.model.GameSettings;
 import com.pokhyl.lifeboat.model.Person;
 import com.pokhyl.lifeboat.model.PersonRelation;
 import com.pokhyl.lifeboat.storage.RelationStorage;
+import com.pokhyl.lifeboat.storage.SettingsStorage;
 import com.pokhyl.lifeboat.utils.RecyclerItemClickListener;
 
 import java.util.ArrayList;
@@ -32,11 +35,18 @@ public class MainActivity extends AppCompatActivity {
     private Map<Person, PersonRelation> relationMap;
     private RelationStorage relationStorage;
     private PersonAdapter personAdapter;
+    private ShowcaseMonitor showcaseMonitor;
+    private SettingsStorage settingsStorage;
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+
         initViews();
 
         relationStorage = new RelationStorage(this);
@@ -46,12 +56,17 @@ public class MainActivity extends AppCompatActivity {
         } else {
             personAdapter.setData(relationMap);
         }
+        showcaseMonitor = new ShowcaseMonitor(this);
+        settingsStorage = new SettingsStorage(this);
+
+        showUserTips();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.main, menu);
-        return super.onCreateOptionsMenu(menu);
+        return true;
     }
 
     @Override
@@ -59,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.menu_new_game:
                 startActivityForResult(new Intent(this, SettingsActivity.class), SETTINGS_REQUEST_CODE);
+                showcaseMonitor.hideSettingsTips();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -77,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.person_grid);
+        recyclerView = (RecyclerView) findViewById(R.id.person_grid);
         recyclerView.setHasFixedSize(true);
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(layoutManager);
@@ -88,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(View view, int position) {
                 PersonRelation relation = relationMap.get(personAdapter.getItem(position));
                 startActivity(RelationActivity.createIntent(MainActivity.this, relation));
+                showcaseMonitor.hideRoleTips();
             }
 
             @Override
@@ -111,6 +128,26 @@ public class MainActivity extends AppCompatActivity {
         relationMap = RelationGenerator.generate(newPersonList);
         relationStorage.storeRelation(relationMap);
         personAdapter.setData(relationMap);
+    }
+
+    private void showUserTips() {
+        switch (settingsStorage.getAppTourProgress()) {
+            case NOT_SHOW_YET:
+                showcaseMonitor.showIntoTips();
+                break;
+            case ROLE_TIPS_SHOWN:
+                showcaseMonitor.showSettingsTips();
+                break;
+        }
+        recyclerView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                if (settingsStorage.getAppTourProgress() == ShowcaseMonitor.AppTourProgress.INTRO_SHOWN) {
+                    showcaseMonitor.showRoleTips();
+                }
+                recyclerView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+            }
+        });
     }
 
 }
