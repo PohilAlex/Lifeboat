@@ -96,6 +96,16 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.person_grid);
         recyclerView.setHasFixedSize(true);
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
+        layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                if (personAdapter.getItemCount() % 2 == 1 && position == personAdapter.getItemCount() - 1) {
+                    return 2;
+                } else {
+                    return 1;
+                }
+            }
+        });
         recyclerView.setLayoutManager(layoutManager);
         personAdapter = new PersonAdapter();
         recyclerView.setAdapter(personAdapter);
