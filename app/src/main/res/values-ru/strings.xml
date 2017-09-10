@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">За ботром</string>
+    <string name="app_name">Зa бортом</string>
     <string name="refresh_item">Обновить</string>
     <string name="settings_item">Настройки</string>
     <string name="title_activity_settings">Настройки</string>
@@ -30,9 +30,10 @@
     <string name="menu_new_game">НОВАЯ ИГРА</string>
 
     <!-- User tips-->
-    <string name="welcome_msg">Добро пожаловать на борт</string>
-    <string name="role_tip_title">Ребенок к рулю</string>
-    <string name="role_tip_text">Чтобы узнать своего друга и врага кликни на тайл Ребенка</string>
-    <string name="settings_tip_title">Отлично сделано</string>
-    <string name="settings_tip_text">Нажмите чтобы сгенерировать новую игру</string>
+    <string name="welcome_msg">Добро пожаловать на борт!</string>
+    <string name="welcome_tip_text">Это приложение поможет тебе создать игру, в которой ты никогда не станешь себе другом или врагом, а так же не будешь иметь одинакового друга и врага.</string>
+    <string name="role_tip_title">Ребенок, к рулю</string>
+    <string name="role_tip_text">Чтобы узнать своего друга и врага, кликни на тайл Ребенка</string>
+    <string name="settings_tip_title">Отлично сделано!</string>
+    <string name="settings_tip_text">Нажмите, чтобы сгенерировать новую игру</string>
 </resources>

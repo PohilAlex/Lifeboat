@@ -28,6 +28,7 @@ public class ShowcaseMonitor {
     public void showIntoTips() {
         new ShowcaseView.Builder(activity)
                 .setContentTitle(R.string.welcome_msg)
+                .setContentText(R.string.welcome_tip_text)
                 .setStyle(R.style.CustomShowcaseTheme)
                 .blockAllTouches()
                 .setShowcaseEventListener(new SimpleShowcaseEventListener() {

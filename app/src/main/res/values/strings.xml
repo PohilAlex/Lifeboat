@@ -35,6 +35,7 @@
 
     <!-- User tips-->
     <string name="welcome_msg">Welcome on board</string>
+    <string name="welcome_tip_text">This application will help you create a game in which you never will be friend or enemy of himself.  Also, you never have same friend and enemy.</string>
     <string name="role_tip_title">Kid, come to the wheel</string>
     <string name="role_tip_text">To find out your friend and enemy, click on the Kid tile</string>
     <string name="settings_tip_title">Well done</string>

@@ -17,9 +17,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/best_friend"
-            android:textSize="18sp"
+            android:textSize="16sp"
+            android:textStyle="bold"
             android:textColor="@color/black"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:textAllCaps="true"
+            android:paddingTop="8dp"/>
         <ImageView
             android:id="@+id/img_friend"
             android:layout_width="wrap_content"
@@ -40,9 +43,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/enemy"
-            android:textSize="18sp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textAllCaps="true"
             android:textColor="@color/black"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:paddingTop="8dp"/>
         <ImageView
             android:id="@+id/img_enemy"
             android:layout_width="wrap_content"

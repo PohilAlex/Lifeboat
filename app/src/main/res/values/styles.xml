@@ -30,7 +30,7 @@
     </style>
 
     <style name="CustomShowcaseTheme">
-        <item name="sv_backgroundColor">#88444444</item>
+        <item name="sv_backgroundColor">#AA333333</item>
         <item name="sv_titleTextAppearance">@style/CustomTitle2</item>
         <item name="sv_detailTextAppearance">@style/CustomText2</item>
     </style>
