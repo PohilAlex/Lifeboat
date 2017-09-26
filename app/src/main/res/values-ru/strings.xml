@@ -1,8 +1,9 @@
 <resources>
-    <string name="app_name">Зa бортом</string>
+    <string name="app_name">Забортом. Распределение ролей.</string>
     <string name="refresh_item">Обновить</string>
     <string name="settings_item">Настройки</string>
     <string name="title_activity_settings">Настройки</string>
+    <string name="title_main_activity">Роли</string>
 
     <!-- Person names -->
     <string name="person_kid">Ребенок</string>

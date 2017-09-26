@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">Lifeboat</string>
+    <string name="app_name">Lifeboat. Roles Distribution.</string>
+    <string name="title_main_activity">Roles</string>
     <string name="refresh_item">Refresh relation</string>
     <string name="settings_item">Settings</string>
     <string name="title_activity_settings">Settings</string>
