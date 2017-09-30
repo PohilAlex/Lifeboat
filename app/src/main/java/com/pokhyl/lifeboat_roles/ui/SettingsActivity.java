@@ -1,4 +1,4 @@
-package com.pokhyl.lifeboat.ui;
+package com.pokhyl.lifeboat_roles.ui;
 
 
 import android.os.Bundle;
@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
-import com.pokhyl.lifeboat.R;
+import com.pokhyl.lifeboat_roles.R;
 
 public class SettingsActivity extends AppCompatActivity {
 

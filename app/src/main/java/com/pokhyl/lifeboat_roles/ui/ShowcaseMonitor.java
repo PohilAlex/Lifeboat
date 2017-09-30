@@ -1,4 +1,4 @@
-package com.pokhyl.lifeboat.ui;
+package com.pokhyl.lifeboat_roles.ui;
 
 import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
@@ -9,8 +9,8 @@ import com.github.amlcurran.showcaseview.ShowcaseView;
 import com.github.amlcurran.showcaseview.SimpleShowcaseEventListener;
 import com.github.amlcurran.showcaseview.targets.PointTarget;
 import com.github.amlcurran.showcaseview.targets.ViewTarget;
-import com.pokhyl.lifeboat.R;
-import com.pokhyl.lifeboat.storage.SettingsStorage;
+import com.pokhyl.lifeboat_roles.R;
+import com.pokhyl.lifeboat_roles.storage.SettingsStorage;
 
 public class ShowcaseMonitor {
 

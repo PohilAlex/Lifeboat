@@ -1,4 +1,4 @@
-package com.pokhyl.lifeboat.model;
+package com.pokhyl.lifeboat_roles.model;
 
 
 public enum Person {

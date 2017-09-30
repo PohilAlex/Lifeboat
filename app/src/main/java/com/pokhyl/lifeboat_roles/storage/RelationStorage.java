@@ -1,4 +1,4 @@
-package com.pokhyl.lifeboat.storage;
+package com.pokhyl.lifeboat_roles.storage;
 
 
 import android.content.Context;
@@ -8,9 +8,9 @@ import android.util.Log;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.pokhyl.lifeboat.model.Person;
-import com.pokhyl.lifeboat.model.PersonRelation;
-import com.pokhyl.lifeboat.model.RelationMap;
+import com.pokhyl.lifeboat_roles.model.Person;
+import com.pokhyl.lifeboat_roles.model.PersonRelation;
+import com.pokhyl.lifeboat_roles.model.RelationMap;
 
 import java.io.IOException;
 import java.util.Map;

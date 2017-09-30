@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.pokhyl.lifeboat">
+    package="com.pokhyl.lifeboat_roles">
 
     <application
         android:allowBackup="true"
@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.MainActivity"
+            android:name="com.pokhyl.lifeboat_roles.ui.MainActivity"
             android:theme="@style/MainTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,10 +17,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.RelationActivity"
+            android:name="com.pokhyl.lifeboat_roles.ui.RelationActivity"
             android:theme="@style/MainTheme"/>
         <activity
-            android:name=".ui.SettingsActivity"
+            android:name="com.pokhyl.lifeboat_roles.ui.SettingsActivity"
             android:label="@string/title_activity_settings"
             android:theme="@style/SettingsTheme"/>
     </application>

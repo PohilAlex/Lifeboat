@@ -1,4 +1,4 @@
-package com.pokhyl.lifeboat.storage;
+package com.pokhyl.lifeboat_roles.storage;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -7,13 +7,13 @@ import android.support.v7.preference.PreferenceManager;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
-import com.pokhyl.lifeboat.R;
-import com.pokhyl.lifeboat.model.GameSettings;
-import com.pokhyl.lifeboat.model.Person;
-import com.pokhyl.lifeboat.ui.ShowcaseMonitor.AppTourProgress;
+import com.pokhyl.lifeboat_roles.R;
+import com.pokhyl.lifeboat_roles.model.GameSettings;
+import com.pokhyl.lifeboat_roles.model.Person;
+import com.pokhyl.lifeboat_roles.ui.ShowcaseMonitor.AppTourProgress;
 
-import static com.pokhyl.lifeboat.model.GameSettings.DEF_PLAYER_NUMBER;
-import static com.pokhyl.lifeboat.model.GameSettings.DEF_USE_RANDOM;
+import static com.pokhyl.lifeboat_roles.model.GameSettings.DEF_PLAYER_NUMBER;
+import static com.pokhyl.lifeboat_roles.model.GameSettings.DEF_USE_RANDOM;
 
 public class SettingsStorage {
 

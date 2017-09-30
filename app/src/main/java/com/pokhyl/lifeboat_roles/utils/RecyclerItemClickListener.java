@@ -1,4 +1,4 @@
-package com.pokhyl.lifeboat.utils;
+package com.pokhyl.lifeboat_roles.utils;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

@@ -1,10 +1,10 @@
-package com.pokhyl.lifeboat;
+package com.pokhyl.lifeboat_roles;
 
 
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
 
-import com.pokhyl.lifeboat.model.Person;
+import com.pokhyl.lifeboat_roles.model.Person;
 
 public class PersonResourceManager {
 

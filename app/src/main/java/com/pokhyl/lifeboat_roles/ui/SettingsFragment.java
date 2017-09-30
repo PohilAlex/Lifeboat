@@ -1,4 +1,4 @@
-package com.pokhyl.lifeboat.ui;
+package com.pokhyl.lifeboat_roles.ui;
 
 
 import android.app.Activity;
@@ -18,10 +18,10 @@ import android.widget.Toast;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
-import com.pokhyl.lifeboat.PersonResourceManager;
-import com.pokhyl.lifeboat.R;
-import com.pokhyl.lifeboat.model.Person;
-import com.pokhyl.lifeboat.storage.SettingsStorage;
+import com.pokhyl.lifeboat_roles.PersonResourceManager;
+import com.pokhyl.lifeboat_roles.R;
+import com.pokhyl.lifeboat_roles.model.Person;
+import com.pokhyl.lifeboat_roles.storage.SettingsStorage;
 
 import java.util.Arrays;
 import java.util.Set;

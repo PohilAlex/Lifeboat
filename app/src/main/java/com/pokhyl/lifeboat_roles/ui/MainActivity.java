@@ -1,4 +1,4 @@
-package com.pokhyl.lifeboat.ui;
+package com.pokhyl.lifeboat_roles.ui;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,14 +13,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
 
-import com.pokhyl.lifeboat.R;
-import com.pokhyl.lifeboat.RelationGenerator;
-import com.pokhyl.lifeboat.model.GameSettings;
-import com.pokhyl.lifeboat.model.Person;
-import com.pokhyl.lifeboat.model.PersonRelation;
-import com.pokhyl.lifeboat.storage.RelationStorage;
-import com.pokhyl.lifeboat.storage.SettingsStorage;
-import com.pokhyl.lifeboat.utils.RecyclerItemClickListener;
+import com.pokhyl.lifeboat_roles.R;
+import com.pokhyl.lifeboat_roles.RelationGenerator;
+import com.pokhyl.lifeboat_roles.model.GameSettings;
+import com.pokhyl.lifeboat_roles.model.Person;
+import com.pokhyl.lifeboat_roles.model.PersonRelation;
+import com.pokhyl.lifeboat_roles.storage.RelationStorage;
+import com.pokhyl.lifeboat_roles.storage.SettingsStorage;
+import com.pokhyl.lifeboat_roles.utils.RecyclerItemClickListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;

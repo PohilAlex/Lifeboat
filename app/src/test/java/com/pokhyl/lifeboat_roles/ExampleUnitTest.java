@@ -1,7 +1,7 @@
-package com.pokhyl.lifeboat;
+package com.pokhyl.lifeboat_roles;
 
-import com.pokhyl.lifeboat.model.Person;
-import com.pokhyl.lifeboat.model.PersonRelation;
+import com.pokhyl.lifeboat_roles.model.Person;
+import com.pokhyl.lifeboat_roles.model.PersonRelation;
 
 import org.junit.Assert;
 import org.junit.Test;
